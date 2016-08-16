@@ -1,0 +1,8 @@
+nats:
+    image: nats:latest
+    entrypoint: "/gnatsd -DV"
+    expose:
+      - "4222"
+    ports:
+      - "8222:8222"
+    hostname: nats-server
