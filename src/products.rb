@@ -5,7 +5,7 @@ require 'securerandom'
 
 NATS.on_error { |err| puts "Server Error: #{err}"; exit! }
 
-QUEUE_GROUP = "products-service"
+QUEUE_GROUP = "product-service"
 WORKER_ID   = SecureRandom.uuid
 
 class Product
@@ -33,7 +33,7 @@ class ProductController
     product
   end
 
-  def products_list
+  def product_list
     @products.values
   end
 
@@ -47,18 +47,18 @@ product_controller = ProductController.new
 NATS.start do |nc|
   puts "Worker started for '#{QUEUE_GROUP}' queue with id: #{WORKER_ID}"
 
-  NATS.subscribe("products.list", :queue => QUEUE_GROUP) do |_, reply, sub|
-    puts "Get products list at worker: #{WORKER_ID}"
-    NATS.publish(reply, product_controller.products_list.to_json)
+  NATS.subscribe("product.list", :queue => QUEUE_GROUP) do |_, reply, sub|
+    puts "Get product list at worker: #{WORKER_ID}"
+    NATS.publish(reply, product_controller.product_list.to_json)
   end
 
-  NATS.subscribe("products.get", :queue => QUEUE_GROUP) do |msg, reply, sub|
+  NATS.subscribe("product.get", :queue => QUEUE_GROUP) do |msg, reply, sub|
     msg = JSON.parse msg
     puts "Get product with id: #{msg['id']} at worker: #{WORKER_ID}"
     NATS.publish(reply, product_controller.get_product(msg['id']).to_json)
   end
 
-  NATS.subscribe("products.add", :queue => QUEUE_GROUP) do |msg, reply, sub|
+  NATS.subscribe("product.add", :queue => QUEUE_GROUP) do |msg, reply, sub|
     msg = JSON.parse msg
     puts "Add product with name: '#{msg['name']}' at worker: #{WORKER_ID}"
     product = product_controller.add_product msg['name']
