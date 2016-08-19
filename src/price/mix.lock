@@ -1,0 +1,2 @@
+%{"nats": {:hex, :natsio, "0.1.4", "3eb3a2338724cf67fae1a7e0fef5beb35b70ba8f3afe57c368ab91ef79dbb14b", [:mix], []},
+  "poison": {:hex, :poison, "2.2.0", "4763b69a8a77bd77d26f477d196428b741261a761257ff1cf92753a0d4d24a63", [:mix], []}}
