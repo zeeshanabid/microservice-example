@@ -54,6 +54,7 @@ Vagrant.configure("2") do |config|
     vb.memory = "500"
     vb.cpus   = 1
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+    ENV["LC_ALL"] = "en_US.UTF-8"
   end
   #
   # View the documentation for the provider you are using for more

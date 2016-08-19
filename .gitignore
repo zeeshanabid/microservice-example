@@ -1,1 +1,7 @@
 .vagrant
+src/price/_build
+src/price/cover
+src/price/deps
+src/price/doc
+src/price/erl_crash.dump
+src/price/*.ez
