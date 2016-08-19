@@ -18,7 +18,7 @@ class Product
   end
 
   def to_json
-    {:id => @id, :name => @name}.to_json
+    {'id' => @id, 'name' => @name}.to_json
   end
 end
 
@@ -62,6 +62,6 @@ NATS.start do |nc|
     msg = JSON.parse msg
     puts "Add product with name: '#{msg['name']}' at worker: #{WORKER_ID}"
     product = product_controller.add_product msg['name']
-    NATS.publish reply, {:id => product.id} if reply
+    NATS.publish reply, {'id' => product.id}.to_json if reply
   end
 end
