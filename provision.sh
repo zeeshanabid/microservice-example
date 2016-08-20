@@ -15,3 +15,10 @@ pip3 install asyncio-nats-client
 curl -o /tmp/erlang-solutions_1.0_all.deb https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i /tmp/erlang-solutions_1.0_all.deb
 apt-get update
 apt-get install -y esl-erlang elixir
+
+add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
+add-apt-repository -y ppa:masterminds/glide
+apt-get update
+apt-get install -y golang glide
+
+echo "export GOPATH=/opt/" >> /home/vagrant/.profile
