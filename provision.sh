@@ -20,6 +20,7 @@ add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
 add-apt-repository -y ppa:masterminds/glide
 apt-get update
 apt-get install -y golang glide
+cd /opt/src/api && glide up
 
 apt-get install -y nodejs-legacy npm
 npm install -g elm
