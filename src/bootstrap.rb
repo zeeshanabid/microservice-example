@@ -4,6 +4,8 @@ require 'nats/client'
 
 NATS.on_error { |err| puts "Server Error: #{err}"; exit! }
 
+PRODUCTS = ['Apples', 'Oranges', 'Grapes', 'Mangoes']
+$created = 0
 def create_product(name, price, currency, quantity)
   NATS.connect do
     NATS.request("product.add", {:name => name}.to_json) do |product_add_response|
@@ -15,7 +17,8 @@ def create_product(name, price, currency, quantity)
         price_req = "{\"product_id\": \"#{product['id']}\", \"amount\": #{price}, \"currency\": \"#{currency}\"}"
         NATS.request("price.set", price_req) do |price_set_response|
           puts "Price response: '#{price_set_response}'"
-          NATS.stop
+          $created += 1
+          NATS.stop if $created == PRODUCTS.length
         end
       end
     end
@@ -23,7 +26,7 @@ def create_product(name, price, currency, quantity)
 end
 
 NATS.start do
-  ['Apples', 'Oranges', 'Grapes', 'Mangoes'].each do |product|
+  PRODUCTS.each do |product|
     create_product(product, rand(100..200), 'SEK', rand(50..100))
   end
 end
