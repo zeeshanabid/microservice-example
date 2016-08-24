@@ -21,4 +21,7 @@ add-apt-repository -y ppa:masterminds/glide
 apt-get update
 apt-get install -y golang glide
 
+apt-get install -y nodejs-legacy npm
+npm install -g elm
+
 echo "export GOPATH=/opt/" >> /home/vagrant/.profile
