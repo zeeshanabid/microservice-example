@@ -25,4 +25,6 @@ apt-get install -y nodejs-legacy npm
 npm install -g elm
 
 echo "export GOPATH=/opt/" >> /home/vagrant/.profile
-GOPATH=/opt/ && cd /opt/src/api && glide up
+export GOPATH=/opt/ && cd /opt/src/api && glide up
+
+cd /opt/src/price && mix local.hex --force && mix deps.get
