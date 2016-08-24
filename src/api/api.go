@@ -38,7 +38,7 @@ type Server struct {
   Router     *httprouter.Router
 }
 
-const DEFAULT_TIMEOUT = 50 * time.Millisecond
+const DEFAULT_TIMEOUT = 100 * time.Millisecond
 const (
   ADD_STOCK    = "stock.add"
   REMOVE_STOCK = "stock.remove"
@@ -105,6 +105,10 @@ func (server *Server) _GetPrice(product Product) (price Price) {
   return price
 }
 
+func (server *Server) _SetAccessControlOrigin(w http.ResponseWriter) {
+  w.Header().Set("Access-Control-Allow-Origin", "*")
+}
+
 func (server *Server) GetProducts(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
   productList := server._GetProducts()
   var products []ProductResponse
@@ -120,16 +124,19 @@ func (server *Server) GetProducts(w http.ResponseWriter, r *http.Request, _ http
     products         =  append(products, product)
   }
   response, _ := json.Marshal(products)
+  server._SetAccessControlOrigin(w)
   fmt.Fprint(w, string(response))
 }
 
 func (server *Server) AddProductStock(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
   product := Product{Id: ps.ByName("product_id")}
+  server._SetAccessControlOrigin(w)
   server._StockRequest(product, ADD_STOCK)
 }
 
 func (server *Server) RemoveProductStock(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
   product := Product{Id: ps.ByName("product_id")}
+  server._SetAccessControlOrigin(w)
   server._StockRequest(product, REMOVE_STOCK)
 }
 
@@ -141,8 +148,8 @@ func (server *Server) Initialize() {
 }
 
 func (server *Server) Start() {
-  log.Println("Starting API server at port 8080")
-  log.Fatal(http.ListenAndServe(":8080", server.Router))
+  log.Println("Starting API server at port 8000")
+  log.Fatal(http.ListenAndServe(":8000", server.Router))
 }
 
 func main() {
