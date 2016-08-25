@@ -4,7 +4,7 @@ This is a simple shopping cart application built on microservice architecture. A
 ## Services
 There are 5 services in the system:
 
-* Products (Ruby 2.00) - [products.rb](https://github.com/zeeshanabid/microservice-example/blob/master/src/products.rb)
+* Products (Ruby 2.0.0) - [products.rb](https://github.com/zeeshanabid/microservice-example/blob/master/src/products.rb)
 * Inventory (Python 3.4.3) - [inventory.py](https://github.com/zeeshanabid/microservice-example/blob/master/src/inventory.py)
 * Price (Elixir 1.3.2) - [Price Service] (https://github.com/zeeshanabid/microservice-example/tree/master/src/price)
 * API (Go 1.6) - [API service](https://github.com/zeeshanabid/microservice-example/tree/master/src/api)
