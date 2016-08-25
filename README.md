@@ -1,13 +1,26 @@
 # Shopping cart using μ-services
-This is a simple shopping cart application built on microservice architecture. All the services are small and simple. All of the services are written in different languages. They communicate via [NATS](http://nats.io/ "NATS").
+This is a simple shopping cart application built on microservice architecture. All the services are small and simple. All of the services are written in different languages. They communicate via [nats](http://nats.io/ "nats").
+
+## Services
+There are 5 services in the system:
+
+* Products (Ruby 2.00) - [products.rb](https://github.com/zeeshanabid/microservice-example/blob/master/src/products.rb)
+* Inventory (Python 3.4.3) - [inventory.py](https://github.com/zeeshanabid/microservice-example/blob/master/src/inventory.py)
+* Price (Elixir 1.3.2) - [Price Service] (https://github.com/zeeshanabid/microservice-example/tree/master/src/price)
+* API (Go 1.6) - [API service](https://github.com/zeeshanabid/microservice-example/tree/master/src/api)
+* Cart (Elm 0.17.1) - [Cart service](https://github.com/zeeshanabid/microservice-example/tree/master/src/cart)
 
 ## How to run?
+
+### Requirements
 Install the following requirements to run this application:
 
 ```
 Vagrant >= 1.8.5
 VirtualBox >= 5.1.2
 ```
+
+### Starting services
 
 After the above applications has been installed, follow these steps to run the application:
 
@@ -26,7 +39,11 @@ cd /opt/src
 foreman start
 ```
 
-Foreman will start all the services and the logs will be displayed on STDOUT. Now let's bootstarp the service with some data. Open another terminal and add some data.
+Foreman will start all the services and the logs will be displayed on STDOUT. 
+
+### Bootstrap
+
+Now let's bootstarp the service with some data. Open another terminal and add some data.
 
 ``` shell
 vagrant ssh
