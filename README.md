@@ -10,6 +10,7 @@ There are 5 services in the system:
 * API (Go 1.6) - [API service](https://github.com/zeeshanabid/microservice-example/tree/master/src/api)
 * Cart (Elm 0.17.1) - [Cart service](https://github.com/zeeshanabid/microservice-example/tree/master/src/cart)
 
+Take a look at [Procfile](https://github.com/zeeshanabid/microservice-example/blob/master/src/Procfile) to start each of these services individually.
 ## How to run?
 
 ### Requirements
