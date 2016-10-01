@@ -26,7 +26,7 @@ VirtualBox >= 5.1.2
 After the above applications has been installed, follow these steps to run the application:
 
 ``` shell
-git clone git@github.com:zeeshanabid/microservice-example.git
+git clone https://github.com/zeeshanabid/microservice-example.git
 cd microservice-example
 
 vagrant up
